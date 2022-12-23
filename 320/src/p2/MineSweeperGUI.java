@@ -13,6 +13,8 @@ public class MineSweeperGUI extends JPanel {
 	private static boolean [][] flags;
 	private static boolean [][] openedCells;
 	
-
+public static JButton[][] getButtons() {
+	return buttons;
+}
 
 }
