@@ -105,6 +105,35 @@ public static void main(String[] args) {
 
 
 	}
+	public static String getName() {
+		return username;
+	}
+	
+	
+	public static void Timer() {
+	timer =new Timer(1000, new ActionListener() {
+		public void actionPerformed(ActionEvent event) {		
+		  seconds++;
+		  counter.setText(""+seconds);
+		  
+		}});
+	}
+	public static int getTime() {
+		int x=seconds;
+		return x;
+		
+	}
+	
+	public static void mineCountDown() {
+		num_mines--;
+		mineCounter.setText(""+(num_mines));
+	}
+	
+	public static void mineCountUp() {
+		num_mines++;
+		mineCounter.setText(""+(num_mines));
+	}
+	
 
 }
 
