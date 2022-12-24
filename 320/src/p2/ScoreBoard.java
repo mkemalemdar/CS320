@@ -1,4 +1,4 @@
-package projectdeneme;
+package p2;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList; // import the ArrayList class
