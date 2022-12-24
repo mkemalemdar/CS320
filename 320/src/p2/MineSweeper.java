@@ -133,7 +133,14 @@ public static void main(String[] args) {
 		num_mines++;
 		mineCounter.setText(""+(num_mines));
 	}
-	
+
+	public static JLabel getLabel() {
+		return picture;
+	}
+
+	public static int getMineCount() {
+		return num_mines;
+	}
 
 }
 
