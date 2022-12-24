@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.sql.*;
 
 public class MineSweeper {
 
@@ -27,6 +28,10 @@ private static Connection connection = null;
 public static void establishConnection() {
 	try {
 		connection = DriverManager.getConnection(URL,DB_USER,DB_PASS);
+		if (username== null){ //first login
+			intial_login();
+		}
+		else //start();
 	}
 	catch (SQLException e) {
 		e.printStackTrace();
@@ -53,8 +58,53 @@ public static void main(String[] args) {
 	}
 }
 
+	public static void intial_login(){
+
+
+		JFrame frame = new JFrame ("Minesweeper App");
+		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+
+		frame.pack();
+		frame.setVisible (true);
+
+
+
+
+		JLabel jcomp1 = new JLabel ("Username:");
+		JButton jcomp2 = new JButton ("Set Username");
+		JTextField jcomp3 = new JTextField (5);
+
+		//adjust size and set layout
+		frame.setPreferredSize (new Dimension (394, 174));
+		frame.setLayout (null);
+
+		//add components
+		frame.add (jcomp1);
+		frame.add (jcomp2);
+		frame.add (jcomp3);
+
+		//set component bounds (only needed by Absolute Positioning)
+		jcomp1.setBounds (110, 40, 100, 25);
+		jcomp2.setBounds (135, 85, 120, 25);
+		jcomp3.setBounds (180, 40, 100, 25);
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible (true);
+
+		jcomp2.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				username = jcomp3.getText();
+				frame.dispose();
+				//start();
+			}
+
+		});
 
 
 	}
+
+}
 
 
