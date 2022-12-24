@@ -30,7 +30,7 @@ public static void establishConnection() {
 	try {
 		connection = DriverManager.getConnection(URL,DB_USER,DB_PASS);
 		if (username== null){ //first login
-			intial_login();
+			inital_login();
 		}
 		else ;//start();
 	}
@@ -59,7 +59,7 @@ public static void main(String[] args) {
 	}
 }
 
-	public static void intial_login(){
+	public static void inital_login(){
 
 
 		JFrame frame = new JFrame ("Minesweeper App");
@@ -105,6 +105,7 @@ public static void main(String[] args) {
 
 
 	}
+
 	public static String getName() {
 		return username;
 	}
