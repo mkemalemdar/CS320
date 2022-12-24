@@ -32,7 +32,7 @@ public static void establishConnection() {
 		if (username== null){ //first login
 			inital_login();
 		}
-		else ;//start();
+		else start();
 	}
 	catch (SQLException e) {
 		e.printStackTrace();
