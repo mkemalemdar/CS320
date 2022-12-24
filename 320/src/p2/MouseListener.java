@@ -50,41 +50,15 @@ public MouseListener(int x,int y, MineGrid g) {
 
 	}
 }
-if (MineSweeper.getMineCount()==0) {
+
+	if (MineSweeper.getMineCount()==0) {
 	int time = MineSweeper.getTime();
 	String name = MineSweeper.getName();
 	JOptionPane.showMessageDialog(null, "You have completed the game in "+ time + " seconds!");
 
-	Connection conn = makeConnection();
-	PreparedStatement pt = null;
 
-	String sql = " insert into leaderboard (username, comptime) VALUES (?, ?)";
-	try {
-		pt = conn.prepareStatement(sql);
-	} catch (SQLException e) {
-		throw new RuntimeException(e);
-	}
-	try {
-		pt.setString (1, name);
-	} catch (SQLException e) {
-		throw new RuntimeException(e);
-	}
-	try {
-		pt.setInt (2, time);
-	} catch (SQLException e) {
-		throw new RuntimeException(e);
-	}
-	try {
-		pt.executeUpdate();
-	} catch (SQLException e) {
-		throw new RuntimeException(e);
-	}
-
-
-	MineSweeper.end();
 	 
 } else return;
-	
-}
+	}	
 	
 }
