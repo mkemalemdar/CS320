@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+
 
 public class MouseListener extends MouseAdapter  {
 private MineGrid grid;
@@ -56,8 +58,43 @@ if (MineSweeper.getMineCount()==0) {
 	int time = MineSweeper.getTime();
 	String name = MineSweeper.getName();
 	JOptionPane.showMessageDialog(null, "You have completed the game in "+ time + " seconds!");
+	MineSweeper.end();
+	
+	if (MineSweeper.diff==1) {
+	       time=time*1000;
+	   } if(MineSweeper.diff==2) {
+	       time=time*600;
+	   }if (MineSweeper.diff==3) {
+	       time=time*300;
+	   } 
 
+	   if (MineSweeper.diff!=0) {
+	        Connection conn = MineSweeper.establishConnection();
+	        PreparedStatement pt = null;
 
+	        String sql = " insert into leaderboard (user_name, score_time) VALUES (?, ?)";
+	        try {
+	            pt = conn.prepareStatement(sql);
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+	        try {
+	            pt.setString (1, name);
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+	        try {
+	            pt.setInt (2, time);
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+	        try {
+	            pt.executeUpdate();
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+
+	   }
 	 
 } else return;
 	
