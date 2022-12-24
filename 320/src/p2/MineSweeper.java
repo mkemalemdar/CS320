@@ -191,6 +191,94 @@ public static void main(String[] args) {
 
 
 	}
+
+
+	public static void set_difficulty(){
+
+		JFrame frame = new JFrame ("Set Difficulty");
+		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+
+		JRadioButton e_select = new JRadioButton ("Easy");
+		JRadioButton n_select = new JRadioButton ("Normal");
+		JRadioButton h_select = new JRadioButton ("Hard");
+		JRadioButton c_select = new JRadioButton ("Custom");
+		JLabel jcomp5 = new JLabel ("Choose Difficulty");
+		JButton a_button = new JButton ("Apply");
+		JTextField grid_text = new JTextField (5);
+		JTextField mine_text = new JTextField (5);
+		JLabel grid_label = new JLabel ("Grid size");
+		JLabel mine_label = new JLabel ("Number of mines");
+
+		//adjust size and set layout
+		frame.setPreferredSize (new Dimension (691, 200));
+		frame.setLayout (null);
+
+		//add components
+		frame.add (e_select);
+		frame.add (n_select);
+		frame.add (h_select);
+		frame.add (c_select);
+		frame.add (jcomp5);
+		frame.add (a_button);
+		frame.add (grid_text);
+		frame.add (mine_text);
+		frame.add (grid_label);
+		frame.add (mine_label);
+
+		//set component bounds (only needed by Absolute Positioning)
+		e_select.setBounds (50, 70, 100, 25);
+		n_select.setBounds (170, 70, 100, 25);
+		h_select.setBounds (305, 70, 100, 25);
+		c_select.setBounds (430, 70, 70, 25);
+		jcomp5.setBounds (45, 20, 100, 25);
+		a_button.setBounds (300, 115, 100, 25);
+		grid_text.setBounds (525, 70, 35, 25);
+		mine_text.setBounds (605, 70, 35, 25);
+		grid_label.setBounds (515, 95, 75, 25);
+		mine_label.setBounds (575, 95, 110, 25);
+
+
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible (true);
+
+		ButtonGroup G = new ButtonGroup();
+		G.add(e_select);
+		G.add(n_select);
+		G.add(h_select);
+		G.add(c_select);
+
+		a_button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e_select.isSelected()){
+					NUM_MINES = 5;
+					SIZE = 10;
+					JOptionPane.showMessageDialog(null, "Easy Difficulty Selected");
+				}
+				else if (n_select.isSelected()){
+					NUM_MINES = 40;
+					SIZE = 20;
+					JOptionPane.showMessageDialog(null, "Normal Difficulty Selected");
+				}
+				else if (h_select.isSelected()){
+					NUM_MINES = 80;
+					SIZE = 30;
+					JOptionPane.showMessageDialog(null, "Hard Difficulty Selected");
+				}
+				else if (c_select.isSelected()){
+					NUM_MINES = Integer.parseInt(mine_text.getText());
+					SIZE = Integer.parseInt(grid_text.getText());
+					JOptionPane.showMessageDialog(null, "Custom Difficulty Selected");
+				}
+
+				frame.dispose();
+			}
+		});
+
+
+
+	}
 }
-
-
