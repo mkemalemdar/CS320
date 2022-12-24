@@ -111,5 +111,37 @@ public ButtonHandler(int x,int y, MineGrid g) {
 	        
 		
 	}
+	
+	public void revealOtherNumbers(int row, int col) {
+		if(!grid.isInsideGrid(row, col)) return;
+		 if ( grid.getCellContent(row, col)!=0 && !MineSweeperGUI.getFlags()[row][col] && !MineSweeperGUI.getOpenedCells()[row][col] &&!grid.isMINE(row, col)) {
+			 if(grid.getCellContent(row, col)==1) {
+				  Icon icon1 = new ImageIcon("src\\p2\\1.png");
+				  MineSweeperGUI.getButtons()[row][col].setIcon(icon1);
+					MineSweeperGUI.getOpenedCells()[row][col]=true;
+			
+			   } 
+			   else if(grid.getCellContent(row, col)==2) {
+					  Icon icon2 = new ImageIcon("src\\p2\\2.png");
+					  MineSweeperGUI.getButtons()[row][col].setIcon(icon2);
+						MineSweeperGUI.getOpenedCells()[row][col]=true;
+				
+				}
+			   else if(grid.getCellContent(row, col)==3) {
+					  Icon icon3 = new ImageIcon("src\\p2\\3.png");
+					  MineSweeperGUI.getButtons()[row][col].setIcon(icon3);
+						MineSweeperGUI.getOpenedCells()[row][col]=true;
+				}
+			   else if(grid.getCellContent(row, col)==4) {
+					  Icon icon4 = new ImageIcon("src\\p2\\4.png");
+					  MineSweeperGUI.getButtons()[row][col].setIcon(icon4);
+						MineSweeperGUI.getOpenedCells()[row][col]=true;
+				} else {
+					Icon icon5 = new ImageIcon("src\\p2\\5.png");
+					 MineSweeperGUI.getButtons()[row][col].setIcon(icon5);
+						MineSweeperGUI.getOpenedCells()[row][col]=true;
+				}
+		 }
+	}
 
 }
