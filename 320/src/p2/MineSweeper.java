@@ -143,6 +143,54 @@ public static void main(String[] args) {
 		return num_mines;
 	}
 
+
+	public static void update_username(){
+
+
+		JFrame frame = new JFrame ("Update Username");
+		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+
+		frame.pack();
+		frame.setVisible (true);
+
+
+
+
+		JLabel jcomp1 = new JLabel ("Username:");
+		JButton jcomp2 = new JButton ("Update");
+		JTextField jcomp3 = new JTextField (5);
+
+		//adjust size and set layout
+		frame.setPreferredSize (new Dimension (394, 174));
+		frame.setLayout (null);
+
+		//add components
+		frame.add (jcomp1);
+		frame.add (jcomp2);
+		frame.add (jcomp3);
+
+		//set component bounds (only needed by Absolute Positioning)
+		jcomp1.setBounds (110, 40, 100, 25);
+		jcomp2.setBounds (135, 85, 120, 25);
+		jcomp3.setBounds (180, 40, 100, 25);
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible (true);
+
+		jcomp2.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				username = jcomp3.getText();
+
+				JOptionPane.showMessageDialog(null, "Username Has Been Updated");
+				frame.dispose();
+			}
+
+		});
+
+
+	}
 }
 
 
