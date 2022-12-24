@@ -1,5 +1,6 @@
 package p2;
 
+import java.sql.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +45,7 @@ public static void main(String[] args) {
 	try {
 		establishConnection();
 		Statement statement = connection.createStatement();	
-		
+
 	} catch (SQLException e) {
 		e.printStackTrace();			
 	}
