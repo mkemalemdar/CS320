@@ -31,7 +31,7 @@ public static void establishConnection() {
 		if (username== null){ //first login
 			intial_login();
 		}
-		else //start();
+		else ;//start();
 	}
 	catch (SQLException e) {
 		e.printStackTrace();
