@@ -38,6 +38,7 @@ public static void establishConnection() {
 		e.printStackTrace();
 	}
 }
+
 public static void closeConnection() {
 	try {
 		connection.close();
@@ -110,7 +111,6 @@ public static void main(String[] args) {
 		return username;
 	}
 	
-	
 	public static void Timer() {
 	timer =new Timer(1000, new ActionListener() {
 		public void actionPerformed(ActionEvent event) {		
@@ -119,6 +119,7 @@ public static void main(String[] args) {
 		  
 		}});
 	}
+
 	public static int getTime() {
 		int x=seconds;
 		return x;
@@ -142,7 +143,6 @@ public static void main(String[] args) {
 	public static int getMineCount() {
 		return num_mines;
 	}
-
 
 	public static void update_username(){
 
@@ -191,7 +191,6 @@ public static void main(String[] args) {
 
 
 	}
-
 
 	public static void set_difficulty(){
 
@@ -249,7 +248,6 @@ public static void main(String[] args) {
 		G.add(n_select);
 		G.add(h_select);
 		G.add(c_select);
-
 		a_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -276,65 +274,133 @@ public static void main(String[] args) {
 
 				frame.dispose();
 			}
-		public static void game(int i){
-	frame2=new JFrame("Mine Sweeper | # of mines;" +NUM_MINES);
-	num_mines = NUM_MINES;
-	int size = SIZE;
 
-	frame2.setSize(SIZE*20,SIZE*20+100);
-	JPanel panel=new JPanel();
-	panel.setBackground(Color.LIGHT_GRAY);
-
-
-
-	panel.setLayout(new BorderLayout());
-	frame2.add(panel,BorderLayout.NORTH);
-	Icon Smiley =new ImageIcon("C:\\smiley.png");
-	picture= new JLabel(Smiley);
-	panel.add(picture);
-
-
-
-	MineSweeperGUI panel2=new MineSweeperGUI(size, size,num_mines);
-	panel2.setBackground(Color.LIGHT_GRAY);
-
-	frame2.add(panel2,BorderLayout.SOUTH);
-
-
-	frame2.add(panel2);
-
-	frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	counter=new JLabel("000");
-	counter.setOpaque(true);
-	counter.setBackground(Color.BLACK);
-	counter.setFont(new Font("Courier", Font.BOLD, 25));
-	counter.setForeground(Color.RED);
-	panel.add(counter, BorderLayout.EAST);
-
-	frame2.setLocationRelativeTo(null);
-	frame2.setVisible(true);
-
-	if (i == 0){
-		Timer();
-		timer.start();
-	}
-	else if (i == 1){
-		timer.restart();
+		});
 	}
 
-	mineCounter=new JLabel(""+num_mines);
-	mineCounter.setOpaque(true);
-	mineCounter.setBackground(Color.BLACK);
-	mineCounter.setFont(new Font("Courier", Font.BOLD, 25));
-	mineCounter.setForeground(Color.RED);
-	panel.add(mineCounter,BorderLayout.WEST);
+	public static void game(int i){
+			frame2=new JFrame("Mine Sweeper | # of mines;" +NUM_MINES);
+			num_mines = NUM_MINES;
+			int size = SIZE;
+
+			frame2.setSize(SIZE*20,SIZE*20+100);
+			JPanel panel=new JPanel();
+			panel.setBackground(Color.LIGHT_GRAY);
 
 
-}
+
+			panel.setLayout(new BorderLayout());
+			frame2.add(panel,BorderLayout.NORTH);
+			Icon Smiley =new ImageIcon("C:\\smiley.png");
+			picture= new JLabel(Smiley);
+			panel.add(picture);
+
+
+
+			MineSweeperGUI panel2=new MineSweeperGUI(size, size,num_mines);
+			panel2.setBackground(Color.LIGHT_GRAY);
+
+			frame2.add(panel2,BorderLayout.SOUTH);
+
+
+			frame2.add(panel2);
+
+			frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			counter=new JLabel("000");
+			counter.setOpaque(true);
+			counter.setBackground(Color.BLACK);
+			counter.setFont(new Font("Courier", Font.BOLD, 25));
+			counter.setForeground(Color.RED);
+			panel.add(counter, BorderLayout.EAST);
+
+			frame2.setLocationRelativeTo(null);
+			frame2.setVisible(true);
+
+			if (i == 0){
+				Timer();
+				timer.start();
+			}
+			else if (i == 1){
+				timer.restart();
+			}
+
+			mineCounter=new JLabel(""+num_mines);
+			mineCounter.setOpaque(true);
+			mineCounter.setBackground(Color.BLACK);
+			mineCounter.setFont(new Font("Courier", Font.BOLD, 25));
+			mineCounter.setForeground(Color.RED);
+			panel.add(mineCounter,BorderLayout.WEST);
+
+
+
+
+
+	}
+
+	public static void start(){
+		JFrame frame = new JFrame ("Welcome " + username);
+		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+
+
+
+		//construct components
+		JButton p_button = new JButton ("Play");
+		JButton s_button = new JButton ("Settings");
+		JButton u_button = new JButton ("Change Username");
+		JButton q_button = new JButton ("Quit");
+
+		//adjust size and set layout
+		frame.setPreferredSize (new Dimension (596, 204));
+		frame.setLayout (null);
+
+		//add components
+		frame.add (p_button);
+		frame.add (s_button);
+		frame.add (u_button);
+		frame.add (q_button);
+
+		//set component bounds (only needed by Absolute Positioning)
+		p_button.setBounds (225, 35, 145, 50);
+		s_button.setBounds (250, 130, 100, 25);
+		u_button.setBounds (50, 130, 150, 25);
+		q_button.setBounds (410, 130, 100, 25);
+
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible (true);
+
+		p_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				game(0);
+				frame.dispose();
+			}
 		});
 
+		q_button.addActionListener(new ActionListener() {
 
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
+		u_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				update_username();
+				frame.setTitle("Welcome " + username);
+			}
+		});
+
+		s_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				set_difficulty();
+			}
+		});
 
 	}
+
 }
