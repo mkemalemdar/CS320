@@ -78,4 +78,38 @@ public ButtonHandler(int x,int y, MineGrid g) {
 				}
 			}
 		}
+	public void revealZeros(int row, int col) {
+		if(!grid.isInsideGrid(row, col)) return;
+
+	     if ( grid.getCellContent(row, col) == 0 && !MineSweeperGUI.getFlags()[row][col] && !MineSweeperGUI.getOpenedCells()[row][col]) {
+	 
+	               MineSweeperGUI.getButtons()[row][col].setIcon(null);  
+	               MineSweeperGUI.getButtons()[row][col].setBackground(Color.LIGHT_GRAY);
+	               MineSweeperGUI.getOpenedCells()[row][col] = true;
+	              
+	               revealOtherNumbers(row+1, col-1);
+	               revealOtherNumbers(row+1, col);
+	               revealOtherNumbers(row+1, col+1);
+	               revealOtherNumbers(row-1, col);
+	               revealOtherNumbers(row-1, col+1);
+	               revealOtherNumbers(row-1, col-1);
+	               revealOtherNumbers(row, col-1);
+	               revealOtherNumbers(row, col-1);
+	               
+	               revealZeros( row+1, col-1 );
+	               revealZeros( row+1, col );
+	               revealZeros( row+1, col +1);
+	               revealZeros( row-1, col );      
+	               revealZeros( row-1, col +1);
+	               revealZeros( row-1, col -1);
+	               revealZeros( row, col-1 );
+	               revealZeros( row, col+1 );
+	                             
+	           } else {
+	               return;
+	           }
+	        
+		
+	}
+
 }
