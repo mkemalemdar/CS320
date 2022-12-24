@@ -276,6 +276,62 @@ public static void main(String[] args) {
 
 				frame.dispose();
 			}
+		public static void game(int i){
+	frame2=new JFrame("Mine Sweeper | # of mines;" +NUM_MINES);
+	num_mines = NUM_MINES;
+	int size = SIZE;
+
+	frame2.setSize(SIZE*20,SIZE*20+100);
+	JPanel panel=new JPanel();
+	panel.setBackground(Color.LIGHT_GRAY);
+
+
+
+	panel.setLayout(new BorderLayout());
+	frame2.add(panel,BorderLayout.NORTH);
+	Icon Smiley =new ImageIcon("C:\\smiley.png");
+	picture= new JLabel(Smiley);
+	panel.add(picture);
+
+
+
+	MineSweeperGUI panel2=new MineSweeperGUI(size, size,num_mines);
+	panel2.setBackground(Color.LIGHT_GRAY);
+
+	frame2.add(panel2,BorderLayout.SOUTH);
+
+
+	frame2.add(panel2);
+
+	frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	counter=new JLabel("000");
+	counter.setOpaque(true);
+	counter.setBackground(Color.BLACK);
+	counter.setFont(new Font("Courier", Font.BOLD, 25));
+	counter.setForeground(Color.RED);
+	panel.add(counter, BorderLayout.EAST);
+
+	frame2.setLocationRelativeTo(null);
+	frame2.setVisible(true);
+
+	if (i == 0){
+		Timer();
+		timer.start();
+	}
+	else if (i == 1){
+		timer.restart();
+	}
+
+	mineCounter=new JLabel(""+num_mines);
+	mineCounter.setOpaque(true);
+	mineCounter.setBackground(Color.BLACK);
+	mineCounter.setFont(new Font("Courier", Font.BOLD, 25));
+	mineCounter.setForeground(Color.RED);
+	panel.add(mineCounter,BorderLayout.WEST);
+
+
+}
 		});
 
 
