@@ -121,9 +121,7 @@ public static void main(String[] args) {
 	}
 
 	public static int getTime() {
-		int x=seconds;
-		return x;
-		
+		return seconds;
 	}
 	
 	public static void mineCountDown() {
@@ -401,6 +399,82 @@ public static void main(String[] args) {
 			}
 		});
 
+	}
+
+	public static void end(){
+		frame2.dispose();
+		seconds = 0;
+		timer.stop();
+
+		JFrame frame = new JFrame ("GG! " + username);
+		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+
+		JButton p_button = new JButton ("Play Again");
+		JButton s_button = new JButton ("Change Settings");
+		JButton l_button = new JButton ("LeaderBoard");
+		JButton q_button = new JButton ("Quit");
+		JButton u_button = new JButton ("Change Username");
+
+		//adjust size and set layout
+		frame.setPreferredSize (new Dimension (858, 200));
+		frame.setLayout (null);
+
+		//add components
+		frame.add (p_button);
+		frame.add (s_button);
+		frame.add (l_button);
+		frame.add (q_button);
+		frame.add (u_button);
+
+		//set component bounds (only needed by Absolute Positioning)
+		p_button.setBounds (65, 40, 130, 45);
+		s_button.setBounds (250, 40, 150, 45);
+		l_button.setBounds (450, 40, 150, 45);
+		q_button.setBounds (360, 105, 120, 45);
+		u_button.setBounds (655, 40, 150, 45);
+
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible (true);
+
+
+		p_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				game(1);
+				frame.dispose();
+			}
+		});
+
+		q_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
+		u_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				update_username();
+				frame.setTitle("GG! " + username);
+			}
+		});
+
+		s_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				set_difficulty();
+			}
+		});
+
+		l_button.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "to be filled");
+			}
+		});
 	}
 
 }
