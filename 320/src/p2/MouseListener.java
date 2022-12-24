@@ -19,6 +19,72 @@ public MouseListener(int x,int y, MineGrid g) {
 	grid=g;
 }
 
+	public void mouseClicked(MouseEvent ME) {
+		
 	
+		if (ME.getButton()==3 && ME.getSource() instanceof JButton) {
+		JButton button =(JButton)ME.getSource(); 
+		
+		if(!MineSweeperGUI.getFlags()[row][col] && !MineSweeperGUI.getOpenedCells()[row][col] && grid.isMINE(row, col)) { 
+		MineSweeper.mineCountDown();
+		Icon icon = new ImageIcon("src\p2\\flag.png");
+		  button.setIcon(icon);
+		  MineSweeperGUI.getFlags()[row][col]=true;
+		  	}  
+		else if(!MineSweeperGUI.getFlags()[row][col] && !MineSweeperGUI.getOpenedCells()[row][col] ) { 
+		
+			Icon icon = new ImageIcon("src\p2\\flag.png");
+			  button.setIcon(icon);
+			  MineSweeperGUI.getFlags()[row][col]=true;
+			  	}  
+		else if (!MineSweeperGUI.getOpenedCells()[row][col] && grid.isMINE(row, col)) {
+		MineSweeper.mineCountUp();
+				Icon icon1 = new ImageIcon("src\p2\\button.png");
+				button.setIcon(icon1);
+			 MineSweeperGUI.getFlags()[row][col]=false;
+	} 	else if(!MineSweeperGUI.getOpenedCells()[row][col] ){
+
+		Icon icon1 = new ImageIcon("src\p2\\button.png");
+		button.setIcon(icon1);
+		  MineSweeperGUI.getFlags()[row][col]=false;
+
+	}
+}
+if (MineSweeper.getMineCount()==0) {
+	int time = MineSweeper.getTime();
+	String name = MineSweeper.getName();
+	JOptionPane.showMessageDialog(null, "You have completed the game in "+ time + " seconds!");
+
+	Connection conn = makeConnection();
+	PreparedStatement pt = null;
+
+	String sql = " insert into leaderboard (username, comptime) VALUES (?, ?)";
+	try {
+		pt = conn.prepareStatement(sql);
+	} catch (SQLException e) {
+		throw new RuntimeException(e);
+	}
+	try {
+		pt.setString (1, name);
+	} catch (SQLException e) {
+		throw new RuntimeException(e);
+	}
+	try {
+		pt.setInt (2, time);
+	} catch (SQLException e) {
+		throw new RuntimeException(e);
+	}
+	try {
+		pt.executeUpdate();
+	} catch (SQLException e) {
+		throw new RuntimeException(e);
+	}
+
+
+	MineSweeper.end();
+	 
+} else return;
+	
+}
 	
 }
