@@ -77,5 +77,3 @@ public int getMineCount() {
 }
 }
 
-
-}
