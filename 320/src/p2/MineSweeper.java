@@ -10,7 +10,7 @@ public class MineSweeper {
 
 private static int NUM_MINES = 40;
 private static int SIZE = 20;
-private static int num_mines;
+
 private static Timer timer;
 private static int seconds=0;
 private static JLabel counter;
@@ -54,7 +54,7 @@ public static void main(String[] args) {
 		else start();
 
 	} catch (SQLException e) {
-		e.printStackTrace();			
+		e.printStackTrace();		
 	}
 	finally {
 		closeConnection();	
@@ -80,13 +80,13 @@ public static int getTime() {
 }
 
 public static void mineCountDown() {
-	num_mines--;
-	mineCounter.setText(""+(num_mines));
+	NUM_MINES--;
+	mineCounter.setText(""+(NUM_MINES));
 }
 
 public static void mineCountUp() {
-	num_mines++;
-	mineCounter.setText(""+(num_mines));
+	NUM_MINES++;
+	mineCounter.setText(""+(NUM_MINES));
 }
 
 public static JLabel getLabel() {
@@ -94,7 +94,7 @@ public static JLabel getLabel() {
 }
 
 public static int getMineCount() {
-	return num_mines;
+	return NUM_MINES;
 }
 
 public static void intial_login(){
@@ -224,9 +224,19 @@ public static void set_difficulty(){
             }
             else if (c_select.isSelected()){
                 diff=4;
+                
+            
                 NUM_MINES = Integer.parseInt(mine_text.getText());
                 SIZE = Integer.parseInt(grid_text.getText());
-                JOptionPane.showMessageDialog(null, "Custom Difficulty Selected");
+                if (Integer.parseInt(mine_text.getText())==0 || Integer.parseInt(grid_text.getText())==0) {
+                	JOptionPane.showMessageDialog(null, "Invalid Parameters!");
+                	set_difficulty();
+                } else {
+              	  JOptionPane.showMessageDialog(null, "Custom Difficulty Selected");
+                }
+            
+                
+              
             }
 
             frame.dispose();
@@ -316,7 +326,7 @@ public static void end(){
 
 public static void game(int i){
 	frame2=new JFrame("Mine Sweeper | # of mines;" +NUM_MINES);
-	num_mines = NUM_MINES;
+	NUM_MINES = NUM_MINES;
 	int size = SIZE;
 
 	frame2.setSize(SIZE*20,SIZE*20+100);
@@ -333,7 +343,7 @@ public static void game(int i){
 
 
 
-	MineSweeperGUI panel2=new MineSweeperGUI(size, size,num_mines);
+	MineSweeperGUI panel2=new MineSweeperGUI(size, size,NUM_MINES);
 	panel2.setBackground(Color.LIGHT_GRAY);
 
 	frame2.add(panel2,BorderLayout.SOUTH);
@@ -361,7 +371,7 @@ public static void game(int i){
 		timer.restart();
 	}
 
-	mineCounter=new JLabel(""+num_mines);
+	mineCounter=new JLabel(""+NUM_MINES);
 	mineCounter.setOpaque(true);
 	mineCounter.setBackground(Color.BLACK);
 	mineCounter.setFont(new Font("Courier", Font.BOLD, 25));
